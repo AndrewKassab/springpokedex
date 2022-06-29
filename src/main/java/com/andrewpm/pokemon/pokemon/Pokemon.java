@@ -10,7 +10,7 @@ import java.util.Set;
 public class Pokemon {
 
     @Id @GeneratedValue
-    private Long id;
+    private Integer id;
     private String name;
 
     @ManyToOne

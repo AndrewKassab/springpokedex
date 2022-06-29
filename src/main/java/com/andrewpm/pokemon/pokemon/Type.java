@@ -14,7 +14,7 @@ public class Type {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     private String name;
 
