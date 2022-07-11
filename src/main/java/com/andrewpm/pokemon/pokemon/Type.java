@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "moves")
@@ -16,6 +17,7 @@ public class Type {
     @GeneratedValue
     private Integer id;
 
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     public void setName(String name) {

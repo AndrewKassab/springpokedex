@@ -3,10 +3,16 @@ package com.andrewpm.pokemon.pokemon;
 import com.andrewpm.pokemon.exceptions.ItemNotFoundException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -41,10 +47,13 @@ public class TypeController {
     }
 
     @PostMapping("/types")
-    ResponseEntity<EntityModel<Type>> newType(@RequestBody Type type) {
+    ResponseEntity<EntityModel<Type>> newType(@Valid @RequestBody Type type) {
         var newType = repository.save(type);
 
         return ResponseEntity.created(linkTo(methodOn(TypeController.class).one(newType.getId()))
                 .toUri()).body(EntityModel.of(type)); // TODO: Assembler
     }
+
+
+
 }
